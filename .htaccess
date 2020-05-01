@@ -1,4 +1,7 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+# Routes
+RewriteRule ^login login.php [NC,L]
 RewriteRule ^users users.php [NC,L]

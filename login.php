@@ -1,34 +1,47 @@
 <?php
 
 /**
- * File v1/users.php - Routes for login call
+ * File v1/login.php - Routes for login call
  * @author Raphael Nachbar
  */
 
 # Includes auxiliaries
-include_once 'api/helpers/headerPost.php';
-include_once 'api/helpers/database.php';
-include_once 'api/helpers/response.php';
+include_once 'api/helpers/initialize.php';
 include_once 'api/controllers/V1/AuthController.php';
 
-$method = $_SERVER['REQUEST_METHOD'];
-$response = new Response($conn);
-
-if (isset($_SERVER['REQUEST_METHOD']) && $method != null) :
+/**
+ * The value of the variable $method is assigned in the include 'api/helpers/initialize.php'
+ */
+if (isset($method) && $method != null) :
     /**
      * Initializes the object
-     * The value of the $conn is assigned in the include 'helpers/database.php'
+     * The value of the variable $conn is assigned in the include 'helpers/database.php'
      */
-    $auth = new AuthController($conn);
+    $controller = new AuthController($conn);
 
     if ($method === 'POST') :
-        // $return = $users->create();
-        // $message = 'POSTUSER.OK';
+        $post = $validations->postBody($data);
 
-        $response->returnJson(200, $message, $return);
+        if (!$post['success']) :
+            $response->returnJson(400, $post['message']);
+        endif;
+        
+        # User credential checks
+        $auth = $controller->auth($data);
+
+        if ($auth['success']) :
+            $message = 'AUTH.USER.OK';
+            $response->returnJson(200, $message, $auth['data']);
+        else :
+            $response->returnJson(400, $auth['message']);
+        endif;
     else :
         $response->returnJson(400, "$method method is not allowed.");
     endif;
 else :
+    /**
+     * If no method is recognized in the call
+     * Returns error 400 with message
+     */
     $response->returnJson(400, 'No methods found');
 endif;

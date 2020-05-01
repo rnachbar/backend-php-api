@@ -7,7 +7,14 @@
 
 class Response {
 
-    public function returnJson($code, $message, $return = []) {
+    /**
+     * Returns JSON data
+     * @param int $code
+     * @param string $message
+     * @param array $return
+     * @return json
+     */
+    public function returnJson(int $code, string $message, array $return = []) {
         $success = $this->checkCode($code);
 
         http_response_code($code);
@@ -17,8 +24,16 @@ class Response {
             'message' => $message,
             'data' => $return
         ]);
+
+        exit;
     }
 
+    /**
+     * If code is 200, return true
+     * If code is 400, return false
+     * @param int $code
+     * @return boolean
+     */
     private function checkCode(Int $code) {
         if ($code === 200) :
             return true;
@@ -28,5 +43,3 @@ class Response {
     }
 
 }
-
-
