@@ -176,6 +176,28 @@ class UsersController {
     }
 
     /**
+     * Get user historic of drinks
+     * @param array $authorization
+     * @param int $id
+     */
+    public function historic(array $authorization, int $id) {
+        if ($id != intval($authorization['user']['Id'])) :
+            return [
+                'success' => false,
+                'message' => 'ID does not match the user token.'
+            ];
+        endif;
+
+        $add = $this->model->getHistoric(intval($authorization['user']['Id']));
+
+        return [
+            'success' => $add['success'],
+            'message' => $add['message'],
+            'data' => $add['data'],
+        ];
+    }
+
+    /**
      * Validates body fields
      * @param object $data
      */

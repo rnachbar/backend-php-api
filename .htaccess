@@ -3,5 +3,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
 # Routes
+RewriteRule ^historic historic.php [NC,L]
 RewriteRule ^login login.php [NC,L]
 RewriteRule ^users users.php [NC,L]

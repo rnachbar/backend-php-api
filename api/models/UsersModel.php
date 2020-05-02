@@ -258,6 +258,39 @@ class UsersModel {
     }
 
     /**
+     * Search and return historic of users
+     * @param int $id
+     * @return array
+     */
+    public function getHistoric(int $id) {
+        try {
+            $historic = $this->conn->prepare("SELECT * FROM $this->historic_table WHERE UsersId = :userid", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+            $historic->execute([':userid' => $id]);
+
+            $historic_result = $historic->fetchAll(PDO::FETCH_ASSOC);
+
+            $data = [];
+            foreach ($historic_result as $key => $result) :
+                $data[] = [
+                    'drink_ml' => $result['ML'],
+                    'created_at' => $result['CreatedAt']
+                ];
+            endforeach;
+
+            return [
+                'success' => true,
+                'message' => '',
+                'data' => $data
+            ];
+        } catch(PDOException $e)   {
+            return [
+                'success' => false,
+                'message' => $sql . ': ' . $e->getMessage()
+            ];
+        }
+    }
+
+    /**
      * Search and return row count of users, by email
      * @param string $email
      * @return int
