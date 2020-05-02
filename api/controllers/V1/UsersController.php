@@ -157,6 +157,7 @@ class UsersController {
     /**
      * Validates body fields
      * @param object $data
+     * @return array
      */
     public function addDrink(object $data, int $id, array $authorization) {
         if ($id != intval($authorization['user']['Id'])) :
@@ -179,6 +180,7 @@ class UsersController {
      * Get user historic of drinks
      * @param array $authorization
      * @param int $id
+     * @return array
      */
     public function historic(array $authorization, int $id) {
         if ($id != intval($authorization['user']['Id'])) :
@@ -190,10 +192,68 @@ class UsersController {
 
         $add = $this->model->getHistoric(intval($authorization['user']['Id']));
 
+        $data = [];
+        foreach ($add['data'] as $result) :
+            $data[] = [
+                'drink_ml' => $result['ML'],
+                'created_at' => $result['CreatedAt']
+            ];
+        endforeach;
+
         return [
             'success' => $add['success'],
             'message' => $add['message'],
-            'data' => $add['data'],
+            'data' => $data,
+        ];
+    }
+
+    /**
+     * Ranking of users who drank most water on the current day
+     * @return array
+     */
+    public function ranking() {
+        $ranking = $this->model->getRanking();
+
+        # Sorting records by user
+        $users = [];
+
+        foreach ($ranking['data'] as $key => $data) : 
+            $users[$data['UsersId']]['ID'] = $data['UsersId'];
+            $users[$data['UsersId']][] = $data['ML'];
+        endforeach;
+
+        foreach ($users as $key => $user) :
+            $total = 0;
+
+            foreach ($user as $k => $value) :
+                $total += intval($value);
+            endforeach;
+
+            # Correcting total value
+            $total -= intval($users[$key]['ID']);
+
+            # Dividing to have resulted in milliliters
+            $totalML = $total / 0.0010000;
+
+            $read = $this->model->read(intval($users[$key]['ID']));
+
+            $return[] = [
+                'iduser' => $read[0]['iduser'],
+                'name' => $read[0]['name'],
+                'email' => $read[0]['email'],
+                'totalML' => $totalML
+            ];
+        endforeach;
+
+        # Sorting values
+        usort($return, function($a, $b) {
+            return $b['totalML'] <=> $a['totalML'];
+        });
+
+        return [
+            'success' => $ranking['success'],
+            'message' => $ranking['message'],
+            'data' => $return,
         ];
     }
 

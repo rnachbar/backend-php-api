@@ -269,18 +269,37 @@ class UsersModel {
 
             $historic_result = $historic->fetchAll(PDO::FETCH_ASSOC);
 
-            $data = [];
-            foreach ($historic_result as $key => $result) :
-                $data[] = [
-                    'drink_ml' => $result['ML'],
-                    'created_at' => $result['CreatedAt']
-                ];
-            endforeach;
+            return [
+                'success' => true,
+                'message' => '',
+                'data' => $historic_result
+            ];
+        } catch(PDOException $e)   {
+            return [
+                'success' => false,
+                'message' => $sql . ': ' . $e->getMessage()
+            ];
+        }
+    }
+
+    /**
+     * Ranking of users who drank most water on the current day
+     * @return array
+     */
+    public function getRanking() {
+        try {
+            $dt_init = date('Y-m-d 00:00:00');
+            $dt_end = date('Y-m-d 23:59:59');
+
+            $data = $this->conn->prepare("SELECT * FROM $this->historic_table WHERE CreatedAt BETWEEN '$dt_init' AND '$dt_end'", array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+            $data->execute([]);
+
+            $result = $data->fetchAll(PDO::FETCH_ASSOC);
 
             return [
                 'success' => true,
                 'message' => '',
-                'data' => $data
+                'data' => $result
             ];
         } catch(PDOException $e)   {
             return [

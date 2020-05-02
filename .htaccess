@@ -6,3 +6,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^historic historic.php [NC,L]
 RewriteRule ^login login.php [NC,L]
 RewriteRule ^users users.php [NC,L]
+RewriteRule ^ranking ranking.php [NC,L]
