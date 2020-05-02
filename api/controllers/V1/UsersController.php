@@ -17,7 +17,7 @@ class UsersController {
     }
 
     /**
-     * CREATE user
+     * CREATE new  user
      * @param object $data
      * @return array
      */
@@ -54,8 +54,125 @@ class UsersController {
      * @param int $id
      * @return object
      */
-    function read(int $id) {
-        return $this->model->read($id);
+    function read(string $uri) {
+        # Checks whether ID is being passed in the call
+        $parts = explode('/', $uri);
+        $id = end($parts);
+
+        if ($id != '' && intval($id) <= 0) :
+            return false;
+        endif;
+
+        $read = $this->model->read(intval($id));
+
+        if (intval($id) > 0 && count($read) > 0) :
+            $read = $read[0];
+        endif;
+
+        return $read;
+    }
+
+    /**
+     * UPDATE user
+     * @param object $data
+     * @return array
+     */
+    function update(object $data, string $uri, array $authorization) {
+        # Checks id the ID is being passed in the call
+        $parts = explode('/', $uri);
+        $id = end($parts);
+
+        if ($id == '' || intval($id) <= 0) :
+            return [
+                'success' => false,
+                'message' => 'Incorrect ID.'
+            ];
+        endif;
+
+        $find = $this->model->findById($id);
+
+        if ($find <= 0) :
+            return [
+                'success' => false,
+                'message' => 'User not found.'
+            ];
+        endif;
+
+        if (intval($id) != intval($authorization['user']['Id'])) :
+            return [
+                'success' => false,
+                'message' => 'ID does not match the user token.'
+            ];
+        endif;
+
+        $update = $this->model->update($data, intval($id));
+
+        return [
+            'success' => true,
+            'message' => $update['message']
+        ];
+    }
+
+    /**
+     * DELETE user
+     * @param object $data
+     * @return array
+     */
+    function delete(string $uri, array $authorization) {
+        # Checks id the ID is being passed in the call
+        $parts = explode('/', $uri);
+        $id = end($parts);
+
+        if ($id == '' || intval($id) <= 0) :
+            return [
+                'success' => false,
+                'message' => 'Incorrect ID.'
+            ];
+        endif;
+
+        $find = $this->model->findById($id);
+
+        if ($find <= 0) :
+            return [
+                'success' => false,
+                'message' => 'User not found.'
+            ];
+        endif;
+
+        if (intval($id) != intval($authorization['user']['Id'])) :
+            return [
+                'success' => false,
+                'message' => 'ID does not match the user token.'
+            ];
+        endif;
+
+        $delete = $this->model->delete(intval($id));
+
+        return [
+            'success' => true,
+            'message' => $delete['message']
+        ];
+    }
+
+    /**
+     * Validates body fields
+     * @param object $data
+     */
+    public function addDrink(object $data, int $id, array $authorization) {
+        if ($id != intval($authorization['user']['Id'])) :
+            return [
+                'success' => false,
+                'message' => 'ID does not match the user token.'
+            ];
+        endif;
+
+        $add = $this->model->addDrink($data, intval($authorization['user']['Id']));
+
+        return [
+            'success' => $add['success'],
+            'message' => $add['message'],
+            'data' => $add['data'],
+        ];
     }
 
     /**

@@ -77,7 +77,18 @@
 					"name": "Read",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "d80b301d38f6a26524658c62ac5c93bf",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost/raphael/backend-php-api/users/",
 							"protocol": "http",
@@ -98,9 +109,24 @@
 					"name": "Update",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "d80b301d38f6a26524658c62ac5c93bf",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"raphael_nachbar10@hotmail.com\",\n\t\"name\":\"Raphael Nachbar novo\",\n\t\"password\":\"1234@q\"\n}"
+						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/1",
+							"raw": "http://localhost/raphael/backend-php-api/users/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -109,7 +135,7 @@
 								"raphael",
 								"backend-php-api",
 								"users",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -119,9 +145,20 @@
 					"name": "Delete",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "087ced665a404aabab38ce5ad80d3c15",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/1",
+							"raw": "http://localhost/raphael/backend-php-api/users/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -130,7 +167,7 @@
 								"raphael",
 								"backend-php-api",
 								"users",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -140,9 +177,29 @@
 					"name": "Drink",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "91d87a53e5cffc27b5b3716fcad6aa63",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"drink_ml\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/1/drink",
+							"raw": "http://localhost/raphael/backend-php-api/users/8/drink",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -151,7 +208,7 @@
 								"raphael",
 								"backend-php-api",
 								"users",
-								"1",
+								"8",
 								"drink"
 							]
 						}

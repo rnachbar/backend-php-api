@@ -33,10 +33,17 @@ class AuthController {
 
         $login = $this->model->login($data);
 
-        return [
-            'success' => true,
-            'data' => $login
-        ];
+        if ($login) :
+            return [
+                'success' => true,
+                'data' => $login
+            ];
+        else :
+            return [
+                'success' => false,
+                'data' => 'User does not exist or password is incorrect.'
+            ];
+        endif;
     }
 
     /**

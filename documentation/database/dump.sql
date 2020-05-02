@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS `Credentials` (
   `Password` varchar(150) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_Credential_Users_idx` (`UsersId`),
-  CONSTRAINT `fk_Credential_Users` FOREIGN KEY (`UsersId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_Credential_Users` FOREIGN KEY (`UsersId`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
@@ -29,13 +29,14 @@ CREATE TABLE IF NOT EXISTS `DrinkCounter` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `UsersId` int(11) NOT NULL,
   `Counter` int(6) NOT NULL,
+  `ML` int(11) NOT NULL DEFAULT 0,
   `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `UpdatedAt` timestamp NULL DEFAULT NULL,
   `DeletedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_DrinkCounter_Users1_idx` (`UsersId`),
-  CONSTRAINT `fk_DrinkCounter_Users1` FOREIGN KEY (`UsersId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_DrinkCounter_Users1` FOREIGN KEY (`UsersId`) REFERENCES `users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
@@ -46,8 +47,8 @@ CREATE TABLE IF NOT EXISTS `Tokens` (
   `Token` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `fk_Tokens_Users1_idx` (`UsersId`),
-  CONSTRAINT `fk_Tokens_Users1` FOREIGN KEY (`UsersId`) REFERENCES `Users` (`Id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_Tokens_Users1` FOREIGN KEY (`UsersId`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `UpdatedAt` timestamp NULL DEFAULT NULL,
   `DeletedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 

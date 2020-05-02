@@ -26,12 +26,10 @@ if (isset($method) && $method != null) :
             $response->returnJson(400, $post['message']);
         endif;
         
-        # User credential checks
         $auth = $controller->auth($data);
 
         if ($auth['success']) :
-            $message = 'AUTH.USER.OK';
-            $response->returnJson(200, $message, $auth['data']);
+            $response->returnJson(200, 'AUTH.USER.OK', $auth['data']);
         else :
             $response->returnJson(400, $auth['message']);
         endif;
