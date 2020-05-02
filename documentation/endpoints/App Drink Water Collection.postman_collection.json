@@ -123,7 +123,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\" : \"raphael_nachbar10@hotmail.com\",\n\t\"name\":\"Raphael Nachbar novo\",\n\t\"password\":\"1234@q\"\n}"
+							"raw": "{\n    \"email\" : \"raphael_nachbar@hotmail.com\",\n\t\"name\":\"Raphael Nachbar\",\n\t\"password\":\"1234@q77\"\n}"
 						},
 						"url": {
 							"raw": "http://localhost/raphael/backend-php-api/users/5",
@@ -185,13 +185,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "91d87a53e5cffc27b5b3716fcad6aa63",
+								"value": "e893d967f93f99b5f4c7683df3021405",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"drink_ml\": 12\n}",
+							"raw": "{\n\t\"drink_ml\": 4\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -199,7 +199,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/8/drink",
+							"raw": "http://localhost/raphael/backend-php-api/users/1/drink",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -208,7 +208,7 @@
 								"raphael",
 								"backend-php-api",
 								"users",
-								"8",
+								"1",
 								"drink"
 							]
 						}

@@ -9,12 +9,14 @@ class AuthModel {
 
     private $conn;
 
+    # Declaring tables
     private $users_table = 'Users';
     private $credentials_table = 'Credentials';
     private $tokens_table = 'Tokens';
     private $drink_counter_table = 'DrinkCounter';
 
     public function __construct($conn) {
+        # Connection to the database
         $this->conn = $conn;
     }
 
@@ -51,7 +53,7 @@ class AuthModel {
     }
 
     /**
-     * Returns user ID by token
+     * Returns user ID, by token
      * @param string $token
      * @return array
      */
