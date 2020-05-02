@@ -49,6 +49,7 @@ class AuthController {
     /**
      * Validates body fields
      * @param object $data
+     * @return boolean
      */
     private function checkPostData(object $data) {
         if (!isset($data->email) || $data->email == null) :

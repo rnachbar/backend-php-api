@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class AuthController - Responsible for authenticating the user
+ * Class BaseController - Responsible for basic use
  * @author Raphael Nachbar
  */
 
@@ -18,8 +18,8 @@ class BaseController {
     }
 
     /**
-     * Validates body fields
-     * @param object $data
+     * Checks user authorization to access apis by receiving an authentication token
+     * @return array
      */
     public function Authorization() {
         $this->getAuthorizationHeader();
@@ -48,6 +48,10 @@ class BaseController {
         ];
     }
 
+    /**
+     * Checks whether the authorization token exists in the call header
+     * @return string
+     */
     private function getAuthorizationHeader() {
         $this->requestHeaders = apache_request_headers();
 

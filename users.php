@@ -10,6 +10,9 @@ include_once 'api/helpers/initialize.php';
 include_once 'api/controllers/V1/BaseController.php';
 include_once 'api/controllers/V1/UsersController.php';
 
+/**
+ * The value of the variable $method is assigned in the include 'api/helpers/initialize.php'
+ */
 if (isset($method) && $method != null) :
     /**
      * Initializes the user object

@@ -6,13 +6,54 @@
 	},
 	"item": [
 		{
+			"name": "Historic",
+			"item": [
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "e893d967f93f99b5f4c7683df3021405",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/historic/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"historic",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "Login",
 			"item": [
 				{
 					"name": "Login",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\" : \"raphael_nachbar@hotmail.com\",\n\t\"password\":\"1234@q\"\n}",
@@ -23,14 +64,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/login",
-							"protocol": "http",
+							"raw": "{{url}}/login",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"path": [
-								"raphael",
-								"backend-php-api",
 								"login"
 							]
 						}
@@ -47,7 +85,13 @@
 					"name": "Create",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"email\" : \"raphael_nachbar@hotmail.com\",\n\t\"name\":\"Raphael Nachbar\",\n\t\"password\":\"1234@q\"\n}",
@@ -58,14 +102,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/",
-							"protocol": "http",
+							"raw": "{{url}}/users/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"path": [
-								"raphael",
-								"backend-php-api",
 								"users",
 								""
 							]
@@ -85,19 +126,16 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "d80b301d38f6a26524658c62ac5c93bf",
+								"value": "7d6575dda1103547bb2884872067f0ad",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/",
-							"protocol": "http",
+							"raw": "{{url}}/users/",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"path": [
-								"raphael",
-								"backend-php-api",
 								"users",
 								""
 							]
@@ -123,19 +161,16 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\" : \"raphael_nachbar@hotmail.com\",\n\t\"name\":\"Raphael Nachbar\",\n\t\"password\":\"1234@q77\"\n}"
+							"raw": "{\n    \"email\" : \"raphael_nachbar@hotmail.com\",\n\t\"name\":\"Nachbar Raphael\",\n\t\"password\":\"1234@q\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/5",
-							"protocol": "http",
+							"raw": "{{url}}/users/2",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"path": [
-								"raphael",
-								"backend-php-api",
 								"users",
-								"5"
+								"2"
 							]
 						}
 					},
@@ -153,21 +188,18 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "087ced665a404aabab38ce5ad80d3c15",
+								"value": "7d6575dda1103547bb2884872067f0ad",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/7",
-							"protocol": "http",
+							"raw": "{{url}}/users/1",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"path": [
-								"raphael",
-								"backend-php-api",
 								"users",
-								"7"
+								"1"
 							]
 						}
 					},
@@ -185,13 +217,13 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "e893d967f93f99b5f4c7683df3021405",
+								"value": "7d6575dda1103547bb2884872067f0ad",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"drink_ml\": 4\n}",
+							"raw": "{\n\t\"drink_ml\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -199,17 +231,43 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost/raphael/backend-php-api/users/1/drink",
-							"protocol": "http",
+							"raw": "{{url}}/users/1/drink",
 							"host": [
-								"localhost"
+								"{{url}}"
 							],
 							"path": [
-								"raphael",
-								"backend-php-api",
 								"users",
 								"1",
 								"drink"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Ranking",
+			"item": [
+				{
+					"name": "Read",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/ranking",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"ranking"
 							]
 						}
 					},

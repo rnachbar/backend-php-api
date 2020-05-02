@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * File initialize.php - File initiations
+ * @author Raphael Nachbar
+ */
+
 include_once 'header.php';
 include_once 'database.php';
 include_once 'validations.php';

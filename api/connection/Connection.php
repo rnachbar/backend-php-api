@@ -5,6 +5,7 @@
  * Using PDO as a connection method
  * @author Raphael Nachbar
  */
+
 class Connection {
 
     public $conn;

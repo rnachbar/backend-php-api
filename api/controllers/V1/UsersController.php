@@ -17,7 +17,7 @@ class UsersController {
     }
 
     /**
-     * CREATE new  user
+     * CREATE new user
      * @param object $data
      * @return array
      */
@@ -51,7 +51,7 @@ class UsersController {
     /**
      * GET user(s)
      * If receiving ID returns specific user, otherwise returns all users
-     * @param int $id
+     * @param string $uri
      * @return object
      */
     function read(string $uri) {
@@ -75,6 +75,8 @@ class UsersController {
     /**
      * UPDATE user
      * @param object $data
+     * @param string $uri
+     * @param array $authorization
      * @return array
      */
     function update(object $data, string $uri, array $authorization) {
@@ -115,7 +117,8 @@ class UsersController {
 
     /**
      * DELETE user
-     * @param object $data
+     * @param string $uri
+     * @param array $authorization
      * @return array
      */
     function delete(string $uri, array $authorization) {
@@ -155,8 +158,10 @@ class UsersController {
     }
 
     /**
-     * Validates body fields
+     * Adds values ​​to the counter
      * @param object $data
+     * @param int $id
+     * @param array $authorization
      * @return array
      */
     public function addDrink(object $data, int $id, array $authorization) {
@@ -260,6 +265,7 @@ class UsersController {
     /**
      * Validates body fields
      * @param object $data
+     * @return boolean
      */
     private function checkPostData(object $data) {
         if (!isset($data->email) || $data->email == null) :
